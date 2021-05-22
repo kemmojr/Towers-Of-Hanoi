@@ -25,6 +25,7 @@ public class TowerHanoi {
                         strXOut += strX;
                     }
                     whiteSpaceInt = (stackWidth-numX)/2;
+                    whiteSpaceString = "";
                     for (int k = 0; k < whiteSpaceInt; k++){
                         whiteSpaceString += whiteSpace;
                     }
@@ -93,7 +94,9 @@ public class TowerHanoi {
         if (!noToDiscs){
             //getStack(to-1)->top();
             toString = stack[to-1].top();
+            toString = toString.trim();
             fromString = stack[from-1].top();
+            fromString = fromString.trim();
             if (fromString.length()<toString.length()){
                 stack[to-1].push(stack[from-1].top());
                 stack[from-1].pop();
