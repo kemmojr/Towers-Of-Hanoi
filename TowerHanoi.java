@@ -126,8 +126,9 @@ public class TowerHanoi {
 //A print helper function
 //Uses the methods top, push and pop to get the data on the top of the stack, add it to a string and a temporary stack and then remove the top item of the stack
 //Once a fully formatted string has been created the stacks are rebuilt from the temporary stack exactly as they were before printing
-    String print() {
-        String out = "", stackData, stackPrintData = "", dash = "-", blank = " ";
+    String[] print() {
+        String stackData, stackPrintData = "", dash = "-", blank = " ";
+        String[] out = new String[numberOfDiscs];
         LStack[] tempStack = new LStack[3];
         for (int k = 0; k < 3; k++) {
             tempStack[k] = new LStack();
@@ -143,10 +144,7 @@ public class TowerHanoi {
                 } else {
                     stackPrintData = stackData;
                 }
-                out += stackPrintData;
-                if (j == 2){
-                    out += "\n";
-                }
+                out[i] = stackPrintData;
                 tempStack[j].push(stackData);
                 stack[j].pop();
             }
@@ -165,12 +163,10 @@ public class TowerHanoi {
             stack += dash;
         }
         stackPrintData = stack + stack + stack;
-        out += stackPrintData + "\n";
         return out;
     }
 
-    @Override
-    public String toString() {
+    public String[] stringify() {
         return print();
     }
 }

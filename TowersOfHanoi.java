@@ -20,32 +20,43 @@ public class TowersOfHanoi extends Applet implements KeyListener {
         TowersOfHanoi main = new TowersOfHanoi();
 
 //        numberOfDiscs = 3;
-        numberOfDiscs = in;
-        if (numberOfDiscs>0 && numberOfDiscs<6) {
-            String p = "A game with" + numberOfDiscs + "discs";
-            g.drawString(p, 100, 20);
-        }
-        if (numberOfDiscs==0){
-            String p = "Please input the number of discs (max 6):";
-            g.drawString(p, 100, 20);
-        }
+        while (true){
+            numberOfDiscs = in;
+            if (numberOfDiscs > 0 && numberOfDiscs < 6) {
+                String p = "A game with" + numberOfDiscs + "discs";
+                g.drawString(p, 100, 20);
+            }
+            if (numberOfDiscs == 0) {
+                String p = "Please input the number of discs (max 6):";
+                g.drawString(p, 100, 20);
+            }
 
-        if (numberOfDiscs!=0){
-        game = new TowerHanoi(numberOfDiscs); // initialize the game
-        }
-        String p = game.toString();
-        g.drawString(p,200,50);
+            if (numberOfDiscs != 0) {
+                game = new TowerHanoi(numberOfDiscs); // initialize the game
+                if (game != null) {
+                    String[] p = game.stringify();
+                    for (int i = 0; i < p.length; i++) {
+                        g.drawString(p[i], 200, 50);
+                    }
+                }
+            }
 
-        if (moveNum==0){
-            g.drawString(game.toString(),200,0);
-        } else if(moveNum%2==0){
-            to = in;
-            String print = "Moving from " + from + " to " +to;
-            g.drawString(print, 100, moveNum*10 + 20);
-            moveNum++;
-        } else {
-            from = in;
-            moveNum++;
+            if (moveNum == 0) {
+                if (game != null) {
+                    String[] p = game.stringify();
+                    for (int i = 0; i < p.length; i++) {
+                        g.drawString(p[i], 200, 50);
+                    }
+                }
+            } else if (moveNum % 2 == 0) {
+                to = in;
+                String print = "Moving from " + from + " to " + to;
+                g.drawString(print, 100, moveNum * 10 + 20);
+                moveNum++;
+            } else {
+                from = in;
+                moveNum++;
+            }
         }
     }
 
